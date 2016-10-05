@@ -120,7 +120,7 @@ import javax.net.ssl.X509TrustManager;
 public class StockInfoBot implements RoomServiceListener, RoomListener {
 
 
-    private final static Logger log = LoggerFactory.getLogger(StockInfoBot.class);
+    private final static Logger logger = LoggerFactory.getLogger(StockInfoBot.class);
     private RoomService roomService;
 
     private final static Pattern    CASHTAG_REGEX  = Pattern.compile("<cash tag=\"([^\"]+)\"/>");
@@ -166,7 +166,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         catch (Exception e)
         {
             returnCode = -1;
-            log.error("Unexpected exception.", e);
+            logger.error("Unexpected exception.", e);
         }
 
         System.exit(returnCode);
@@ -198,13 +198,13 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
 
     public void initAuth() {
 
-        log.info("Room Example starting...");
+        logger.info("Room Example starting...");
 
         try {
 
             symClient = SymphonyClientFactory.getClient(SymphonyClientFactory.TYPE.BASIC);
 
-            log.debug("{} {}", System.getProperty("sessionauth.url"),
+            logger.debug("{} {}", System.getProperty("sessionauth.url"),
                                System.getProperty("keyauth.url"));
 
             AuthorizationClient authClient = new AuthorizationClient(
@@ -226,14 +226,14 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
                     initParams.get("pod.url")
             );
 
-            log.info("Here...");
+            logger.info("Here...");
 
             //A message to send when the BOT comes online.
             SymMessage aMessage = new SymMessage();
             aMessage.setFormat(SymMessage.Format.TEXT);
             aMessage.setMessage("Hello master, I'm alive again in this room....");
 
-            log.info("2...");
+            logger.info("2...");
 
 
             Stream stream = new Stream();
@@ -250,20 +250,20 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
 
             roomService.joinRoom(room);
 
-            log.info("3...");
+            logger.info("3...");
 
             //Send a message to the room.
             symClient.getMessageService().sendMessage(room, aMessage);
 
 
         } catch (RoomException e) {
-           log.error("error",e);
+           logger.error("error",e);
         } catch (MessagesException e) {
-            log.error("error",e);
+            logger.error("error",e);
         } catch (InitException e) {
-            log.error("error",e);
+            logger.error("error",e);
         } catch (AuthorizationException e) {
-            log.error("error",e);
+            logger.error("error",e);
         }
 
     }
@@ -274,7 +274,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         if (message == null)
             return;
 
-        log.debug("TS: {}\nFrom ID: {}\nSymMessage: {}\nSymMessage Type: {}",
+        logger.debug("TS: {}\nFrom ID: {}\nSymMessage: {}\nSymMessage Type: {}",
                 message.getTimestamp(),
                 message.getFromUserId(),
                 message.getMessage(),
@@ -401,16 +401,16 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
        final String path = "/Users/macbookpro/Documents/Symphony/"
             + "symphony-java-sample-bots/src/main/java/org/symphonyoss/simplebot/test.json";
        String path2 = "https://csplus-nadyac.c9users.io/amazonData.json";
-       log.debug(path2);
+       logger.debug(path2);
        
          URL obj = new URL(path2);
-                log.debug(obj.toString());
+                logger.debug(obj.toString());
 
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
        con.setRequestMethod("GET");
        con.setRequestProperty("User-Agent", "Mozilla/5.0");
        int responseCode = con.getResponseCode();
-              log.debug("Response Code: "+ responseCode);
+              logger.debug("Response Code: "+ responseCode);
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));
@@ -421,7 +421,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
             response.append(inputLine);
         }
         in.close();
-              log.debug(response.toString());
+              logger.debug(response.toString());
 
         String jsonString = response.toString();
        JSONParser parser = new JSONParser();
@@ -443,7 +443,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
 //        result.append("Dividend: " + String.valueOf(stock.getDividend()) + "\n");
         result.append("\n--------------------------------\n");
         result.append("Last Update: " + jsonResultFinal.get("412|sector") + "\n");
-        log.debug(jsonResultFinal.get("412|sector").toString());
+        logger.debug(jsonResultFinal.get("412|sector").toString());
         result.append("Last Price Date: " + jsonResults.get("482|lastPriceDate") + "\n");
         result.append("52 Week High: " + jsonResults.get("482|fiftyTwoWeekHigh") + "\n");
         result.append("Target Price: " + jsonResults.get("482|targetPrice") + "\n");
@@ -470,7 +470,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         Room room = roomService.getRoom(roomMessage.getStreamId());
 
         if(room!=null && roomMessage.getMessage() != null)
-            log.debug("New room message detected from room: {} on stream: {} from: {} message: {}",
+            logger.debug("New room message detected from room: {} on stream: {} from: {} message: {}",
                     room.getRoomDetail().getRoomAttributes().getName(),
                     roomMessage.getStreamId(),
                     roomMessage.getFromUserId(),
@@ -514,7 +514,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         }
         catch (Exception e)
         {
-            log.error("Unexpected exception.", e);
+            logger.error("Unexpected exception.", e);
         }
     }
 
@@ -534,7 +534,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
 
     @Override
     public void onNewRoom(Room room) {
-        log.info("Created new room instance from incoming message..{} {}", room.getId(), room.getRoomDetail().getRoomAttributes().getName());
+        logger.info("Created new room instance from incoming message..{} {}", room.getId(), room.getRoomDetail().getRoomAttributes().getName());
         room.setRoomListener(this);
     }
 
