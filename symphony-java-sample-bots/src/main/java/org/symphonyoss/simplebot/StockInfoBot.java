@@ -404,20 +404,28 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
 
 //       final String path = "/Users/macbookpro/Documents/Symphony/"
 //            + "symphony-java-sample-bots/src/main/java/org/symphonyoss/simplebot/test.json";
-        String path2 = "";
+        String path2;
+        String company = "";
 
         if(stock.equals("AMZN"))
         {
-            path2 = "https://csplus-nadyac.c9users.io/amazonData.json";
+            company = "amazon";
         }
         else if(stock.equals("AAPL"))
         {
-            path2 = "https://csplus-nadyac.c9users.io/appleData.json";
+            company = "apple";
         }
         else if(stock.equals("SPLS"))
         {
-            path2 = "https://csplus-nadyac.c9users.io/staplesData.json";
+            company = "staples";
         }
+        
+        if (company != "") {
+            path2 = "https://csplus-nadyac.c9users.io/"+company+"Data.json";
+        } else {
+            path2 = "";
+        }
+
 
        logger.debug(path2);
        
@@ -465,9 +473,9 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         result.append("Last Actual Year: " + jsonResultFinal.get("411|lastActualYear") + "\n");
         result.append("Currency: " + jsonResultFinal.get("412|currency") + "\n");
         result.append("Rating: " + jsonResultFinal.get("407|rating") + "\n");
-    result.append("Description: " + jsonResultFinal.get("412|description") + "\n");
-    result.append("Currency Symbol: " + jsonResultFinal.get("413|currencySymbol") + "\n");
-    result.append("Series:" + jsonResultFinal.get("413|series") + "\n");
+        result.append("Description: " + jsonResultFinal.get("412|description") + "\n");
+        result.append("Currency Symbol: " + jsonResultFinal.get("413|currencySymbol") + "\n");
+        result.append("Series:" + jsonResultFinal.get("413|series") + "\n");
 //        JSONObject jsonResultfAndVGrid= (JSONObject) jsonResults.get("411|fAndVGrid");
 //                logger.debug(jsonResultfAndVGrid.toString());
 //
