@@ -18,7 +18,7 @@ public class HttpURLConnectionExample {
         http.sendGet();
 
         System.out.println("\nTesting 2 - Send Http POST request");
-        http.sendPost();
+       // http.sendPost();
 
     }
 
@@ -26,7 +26,7 @@ public class HttpURLConnectionExample {
     private void sendGet() throws Exception {
 
         //String url = "https://plus-uit.credit-suisse.com/";
-        String url =  "http://localhost";
+        String url =  "https://csplus-nadyac.c9users.io/amazonData.json";
 
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
