@@ -1,0 +1,294 @@
+2016-10-05 16:22:25 INFO  StockInfoBot:204 - Room Example starting...
+2016-10-05 16:22:25 DEBUG StockInfoBot:210 - https://foundation-dev-api.symphony.com/sessionauth https://foundation-dev-api.symphony.com/keyauth
+2016-10-05 16:22:26 DEBUG AuthorizationClient:78 - SessionToken: sessionToken : 68b75296ffbd3a77e439596bf5fe12d907e92f85f9ef71399c3e5dab96fe96c3bf0249c6708e3b6e2cfa3d21748961e3f7b620c9545fa7168844d298fa78da9c
+2016-10-05 16:22:26 DEBUG AuthorizationClient:86 - KeyToken: keyManagerToken : 010097ccc887b87120c812ef8146372cf77d79a24a3da682992c551a6177829c4c0753f5976b6e59c507a4489551dbfd5454f581c801aec6fdcd0d4e7d9323a9f3c660bd6caf99bf887d8369f8715c5b11cf0c0815a18201ef9e4e675f0a5d5831baaababbbb2b0cc554096550f9fdcdb50342724f383a0c6a3a31fab018f4016bba4758e6ce132e2ccc1d6c9ee85d4be20ba1f5dda842f38391f3178ca64a4b3966205f5e5cf05d9ff40aa9b440c3525e1949ce72701b4a4bb1a99ae3df
+2016-10-05 16:22:26 INFO  MessageFeedWorker:64 - Creating datafeed with pod...
+2016-10-05 16:22:26 DEBUG UsersClientImpl:78 - Found User: csfetchbot@gmail.com:346621040656418
+2016-10-05 16:22:26 INFO  StockInfoBot:232 - Here...
+2016-10-05 16:22:26 INFO  StockInfoBot:239 - 2...
+2016-10-05 16:22:26 ERROR StockInfoBot:263 - error
+org.symphonyoss.exceptions.RoomException: Room is not fully defined.  Check ID and stream ID
+	at org.symphonyoss.client.services.RoomService.joinRoom(RoomService.java:97)
+	at org.symphonyoss.simplebot.StockInfoBot.initAuth(StockInfoBot.java:254)
+	at org.symphonyoss.simplebot.StockInfoBot.<init>(StockInfoBot.java:157)
+	at org.symphonyoss.simplebot.StockInfoBot.main(StockInfoBot.java:166)
+2016-10-05 16:22:50 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:22:50 DEBUG MessageService:126 - MessageID: MDuAn5TH_ZV07vQm3AuPY3___qhpfLKKdA StreamID: AjIQysHT1XMdhes8GcI3uH___qhp4TrBdA
+2016-10-05 16:22:50 DEBUG MessageService:202 - Found new room stream to cache: AjIQysHT1XMdhes8GcI3uH___qhp4TrBdA
+2016-10-05 16:22:50 INFO  StockInfoBot:573 - Created new room instance from incoming message..AjIQysHT1XMdhes8GcI3uH___qhp4TrBdA Testing
+2016-10-05 16:22:50 DEBUG StockInfoBot:481 - New room message detected from room: Testing on stream: AjIQysHT1XMdhes8GcI3uH___qhp4TrBdA from: 346621040656415 message: <messageML>Test</messageML>
+2016-10-05 16:22:50 ERROR StockInfoBot:553 - Unexpected exception.
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+	at java.lang.String.substring(String.java:1955)
+	at yahoofinance.quotes.stock.StockQuotesRequest.parseCSVLine(StockQuotesRequest.java:126)
+	at yahoofinance.quotes.stock.StockQuotesRequest.parseCSVLine(StockQuotesRequest.java:11)
+	at yahoofinance.quotes.QuotesRequest.getResult(QuotesRequest.java:95)
+	at yahoofinance.YahooFinance.getQuotes(YahooFinance.java:355)
+	at yahoofinance.YahooFinance.get(YahooFinance.java:207)
+	at yahoofinance.YahooFinance.get(YahooFinance.java:186)
+	at org.symphonyoss.simplebot.StockInfoBot.onRoomMessage(StockInfoBot.java:505)
+	at org.symphonyoss.client.services.RoomService.onMessage(RoomService.java:124)
+	at org.symphonyoss.client.services.MessageService.onMessage(MessageService.java:143)
+	at org.symphonyoss.client.services.MessageFeedWorker$$Lambda$2/1003723982.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at org.symphonyoss.client.services.MessageFeedWorker.run(MessageFeedWorker.java:90)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-05 16:22:50 DEBUG MessageService:156 - TS: 1475698969974
+From ID: 346621040656415
+SymMessage: <messageML>Test</messageML>
+Type: null
+2016-10-05 16:22:55 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:22:55 DEBUG MessageService:126 - MessageID: WJQ4kMT8wMRZMFBjP_HpFn___qhpfJwjdA StreamID: AjIQysHT1XMdhes8GcI3uH___qhp4TrBdA
+2016-10-05 16:22:55 DEBUG StockInfoBot:481 - New room message detected from room: Testing on stream: AjIQysHT1XMdhes8GcI3uH___qhp4TrBdA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:22:55 DEBUG StockInfoBot:407 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:22:55 DEBUG StockInfoBot:410 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:22:56 DEBUG StockInfoBot:416 - Response Code: 200
+2016-10-05 16:22:56 DEBUG StockInfoBot:427 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:22:56 DEBUG StockInfoBot:449 - Internet & Direct Marketing Retail
+2016-10-05 16:22:56 DEBUG MessageService:156 - TS: 1475698975709
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:22:56 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:22:56 DEBUG MessageService:126 - MessageID: zp2LKMaXFB46q-4HLRTOYn___qhpfJk0dA StreamID: AjIQysHT1XMdhes8GcI3uH___qhp4TrBdA
+2016-10-05 16:23:19 INFO  StockInfoBot:204 - Room Example starting...
+2016-10-05 16:23:19 DEBUG StockInfoBot:210 - https://foundation-dev-api.symphony.com/sessionauth https://foundation-dev-api.symphony.com/keyauth
+2016-10-05 16:23:20 DEBUG AuthorizationClient:78 - SessionToken: sessionToken : fd064f4bf32e3c83630ade2122cae3ec438871b08a34ec2ab3d384a6952fa59f831d38f6632d5d1f61325ab9bbb5fce5629d88e2d7921e7cfc7b1601954d111a
+2016-10-05 16:23:20 DEBUG AuthorizationClient:86 - KeyToken: keyManagerToken : 01000af7262a80cb8a02ff401e109b4b6a6019bddec95d7edd7bb95028a8fcb14b34bbc733abf71719b5696738621812011e73fed6e89f9b6741900ae19f706dec0c96ed04ca6844882d97e26096edcdd87fbff384b533e25033c7440b66d020eaec12030f96d021af20c489824183128b9a1d6276063500e4753a0a1cc99402582aba3219b4f165bb4581a50c43bdc1120836dc53c3a9a17c1505df6e13a9c928cbcaad3d32ef74c6bbf8582829206b60eca22751d81a4a5cdfebdd810a
+2016-10-05 16:23:20 INFO  MessageFeedWorker:64 - Creating datafeed with pod...
+2016-10-05 16:23:21 DEBUG UsersClientImpl:78 - Found User: csfetchbot@gmail.com:346621040656418
+2016-10-05 16:23:21 INFO  StockInfoBot:232 - Here...
+2016-10-05 16:23:21 INFO  StockInfoBot:239 - 2...
+2016-10-05 16:23:21 ERROR StockInfoBot:263 - error
+org.symphonyoss.exceptions.RoomException: Room is not fully defined.  Check ID and stream ID
+	at org.symphonyoss.client.services.RoomService.joinRoom(RoomService.java:97)
+	at org.symphonyoss.simplebot.StockInfoBot.initAuth(StockInfoBot.java:254)
+	at org.symphonyoss.simplebot.StockInfoBot.<init>(StockInfoBot.java:157)
+	at org.symphonyoss.simplebot.StockInfoBot.main(StockInfoBot.java:166)
+2016-10-05 16:23:39 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:23:39 DEBUG MessageService:126 - MessageID: TQJ2ygmcFm16GBAmF7kap3___qhpe_Epbw StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:23:51 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:23:51 DEBUG MessageService:126 - MessageID: TsG0qf_wUbP4P5RG6Zk_V3___qhpe8MhdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:23:51 DEBUG MessageService:202 - Found new room stream to cache: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:23:51 INFO  StockInfoBot:573 - Created new room instance from incoming message..Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA TA Hackathon Chat
+2016-10-05 16:23:51 DEBUG StockInfoBot:481 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656417 message: <messageML> result.append(&quot;Rating: &quot; + jsonResultFinal.get(&quot;407|rating&quot;) + &quot;n&quot;);<br/>                result.append(&quot;Description: &quot; + jsonResultFinal.get(&quot;412|description&quot;) + &quot;n&quot;);<br/>                result.append(&quot;Currency Symbol: &quot; + jsonResultFinal.get(&quot;413|currencySymbol&quot;) + &quot;n&quot;); </messageML>
+2016-10-05 16:23:51 ERROR StockInfoBot:553 - Unexpected exception.
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+	at java.lang.String.substring(String.java:1955)
+	at yahoofinance.quotes.stock.StockQuotesRequest.parseCSVLine(StockQuotesRequest.java:126)
+	at yahoofinance.quotes.stock.StockQuotesRequest.parseCSVLine(StockQuotesRequest.java:11)
+	at yahoofinance.quotes.QuotesRequest.getResult(QuotesRequest.java:95)
+	at yahoofinance.YahooFinance.getQuotes(YahooFinance.java:355)
+	at yahoofinance.YahooFinance.get(YahooFinance.java:207)
+	at yahoofinance.YahooFinance.get(YahooFinance.java:186)
+	at org.symphonyoss.simplebot.StockInfoBot.onRoomMessage(StockInfoBot.java:505)
+	at org.symphonyoss.client.services.RoomService.onMessage(RoomService.java:124)
+	at org.symphonyoss.client.services.MessageService.onMessage(MessageService.java:143)
+	at org.symphonyoss.client.services.MessageFeedWorker$$Lambda$2/726461920.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at org.symphonyoss.client.services.MessageFeedWorker.run(MessageFeedWorker.java:90)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-05 16:23:51 DEBUG MessageService:156 - TS: 1475699031263
+From ID: 346621040656417
+SymMessage: <messageML> result.append(&quot;Rating: &quot; + jsonResultFinal.get(&quot;407|rating&quot;) + &quot;n&quot;);<br/>                result.append(&quot;Description: &quot; + jsonResultFinal.get(&quot;412|description&quot;) + &quot;n&quot;);<br/>                result.append(&quot;Currency Symbol: &quot; + jsonResultFinal.get(&quot;413|currencySymbol&quot;) + &quot;n&quot;); </messageML>
+Type: null
+2016-10-05 16:24:48 INFO  StockInfoBot:204 - Room Example starting...
+2016-10-05 16:24:48 DEBUG StockInfoBot:210 - https://foundation-dev-api.symphony.com/sessionauth https://foundation-dev-api.symphony.com/keyauth
+2016-10-05 16:24:49 DEBUG AuthorizationClient:78 - SessionToken: sessionToken : e9ac700005e29d8890c08d31108606514f586bde0ac9211d28e8f54080a422b4a3512af4b460f8ddff4d5f8628216e8fbf3081bc453eb7a920a074dad0eb26b2
+2016-10-05 16:24:49 DEBUG AuthorizationClient:86 - KeyToken: keyManagerToken : 010055a72d80970289b5206fa9786c74a0b986b08baec5f004864528c89b1395c00e2b7402d419835445e0d5b451f1e95d316d581cb87d7711fd17abe41be080f1488d0777f80aaeeb56b708b9481446a43580b8d67646d4f09b82340c5fdd0de216185e7003a0c23907ce2083c703bcfea8f7eeadf754e26afaf80dfa7d7e644e6d820b80b6739c4768696b56b12b294c1b64cf4aca4cadc568e45f722272b115327a970e05bcd9606b5fb58d7abc1a56aa4be73670d9e2479f230d144e
+2016-10-05 16:24:49 INFO  MessageFeedWorker:64 - Creating datafeed with pod...
+2016-10-05 16:24:49 DEBUG UsersClientImpl:78 - Found User: csfetchbot@gmail.com:346621040656418
+2016-10-05 16:24:49 INFO  StockInfoBot:232 - Here...
+2016-10-05 16:24:49 INFO  StockInfoBot:239 - 2...
+2016-10-05 16:24:49 ERROR StockInfoBot:263 - error
+org.symphonyoss.exceptions.RoomException: Room is not fully defined.  Check ID and stream ID
+	at org.symphonyoss.client.services.RoomService.joinRoom(RoomService.java:97)
+	at org.symphonyoss.simplebot.StockInfoBot.initAuth(StockInfoBot.java:254)
+	at org.symphonyoss.simplebot.StockInfoBot.<init>(StockInfoBot.java:157)
+	at org.symphonyoss.simplebot.StockInfoBot.main(StockInfoBot.java:166)
+2016-10-05 16:25:16 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:25:16 DEBUG MessageService:126 - MessageID: VVRzcpTP0ghZeB8KOySP3H___qhpenUIdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:25:17 DEBUG MessageService:202 - Found new room stream to cache: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:25:17 INFO  StockInfoBot:576 - Created new room instance from incoming message..Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA TA Hackathon Chat
+2016-10-05 16:25:17 DEBUG StockInfoBot:484 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:25:17 DEBUG StockInfoBot:407 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:25:17 DEBUG StockInfoBot:410 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:25:18 DEBUG StockInfoBot:416 - Response Code: 200
+2016-10-05 16:25:18 DEBUG StockInfoBot:427 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:25:18 DEBUG StockInfoBot:449 - Internet & Direct Marketing Retail
+2016-10-05 16:25:18 DEBUG MessageService:156 - TS: 1475699116792
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:25:18 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:25:18 DEBUG MessageService:126 - MessageID: TxU4o9HAGoTzb97eRikqin___qhpem9QdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:25:55 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:25:55 DEBUG MessageService:126 - MessageID: PnZ_HfHspRWdqb1qoM40AX___qhped7ndA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:25:55 DEBUG StockInfoBot:484 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:25:55 ERROR StockInfoBot:556 - Unexpected exception.
+java.lang.StringIndexOutOfBoundsException: String index out of range: -1
+	at java.lang.String.substring(String.java:1955)
+	at yahoofinance.quotes.stock.StockQuotesRequest.parseCSVLine(StockQuotesRequest.java:126)
+	at yahoofinance.quotes.stock.StockQuotesRequest.parseCSVLine(StockQuotesRequest.java:11)
+	at yahoofinance.quotes.QuotesRequest.getResult(QuotesRequest.java:95)
+	at yahoofinance.YahooFinance.getQuotes(YahooFinance.java:355)
+	at yahoofinance.YahooFinance.get(YahooFinance.java:207)
+	at yahoofinance.YahooFinance.get(YahooFinance.java:186)
+	at org.symphonyoss.simplebot.StockInfoBot.onRoomMessage(StockInfoBot.java:508)
+	at org.symphonyoss.client.services.RoomService.onMessage(RoomService.java:124)
+	at org.symphonyoss.client.services.MessageService.onMessage(MessageService.java:143)
+	at org.symphonyoss.client.services.MessageFeedWorker$$Lambda$2/1570183530.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at org.symphonyoss.client.services.MessageFeedWorker.run(MessageFeedWorker.java:90)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-05 16:25:55 DEBUG MessageService:156 - TS: 1475699155225
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:26:00 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:26:00 DEBUG MessageService:126 - MessageID: PEOUbcECaZRbxc27EF1SZH___qhpeclddA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:26:00 DEBUG StockInfoBot:484 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:26:00 DEBUG StockInfoBot:407 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:26:00 DEBUG StockInfoBot:410 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:26:01 DEBUG StockInfoBot:416 - Response Code: 200
+2016-10-05 16:26:01 DEBUG StockInfoBot:427 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:26:01 DEBUG StockInfoBot:449 - Internet & Direct Marketing Retail
+2016-10-05 16:26:01 DEBUG MessageService:156 - TS: 1475699160739
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:26:01 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:26:01 DEBUG MessageService:126 - MessageID: uXY9sNyKcSdp5tBz1OEal3___qhpecd4dA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:26:01 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:26:01 DEBUG MessageService:126 - MessageID: OgNpmfiBOgVfnTaNdpyoEn___qhpecXfdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:27:05 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:27:05 DEBUG MessageService:126 - MessageID: Y5VnI0QSPQC0SV_Rf7TezH___qhpeNH3dA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:27:05 DEBUG StockInfoBot:484 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML><cash tag="AAPL"/></messageML>
+2016-10-05 16:27:06 DEBUG StockInfoBot:407 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:27:06 DEBUG StockInfoBot:410 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:27:06 DEBUG StockInfoBot:416 - Response Code: 200
+2016-10-05 16:27:06 DEBUG StockInfoBot:427 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:27:06 DEBUG StockInfoBot:449 - Internet & Direct Marketing Retail
+2016-10-05 16:27:07 DEBUG MessageService:156 - TS: 1475699224073
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AAPL"/></messageML>
+Type: null
+2016-10-05 16:27:07 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:27:07 DEBUG MessageService:126 - MessageID: r1KIw-AocszonmMbWiTKwH___qhpeMa9dA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:34:37 INFO  StockInfoBot:205 - Room Example starting...
+2016-10-05 16:34:37 DEBUG StockInfoBot:211 - https://foundation-dev-api.symphony.com/sessionauth https://foundation-dev-api.symphony.com/keyauth
+2016-10-05 16:34:38 DEBUG AuthorizationClient:78 - SessionToken: sessionToken : ad7ea98442488efbd0d0aa4109921575d7acc3c60722b7227c8aaacff4e79a07325b0669499fe8567fc01ad04a8e239a93e47f9c9fb62c97ab16dfb91e7fa716
+2016-10-05 16:34:38 DEBUG AuthorizationClient:86 - KeyToken: keyManagerToken : 01002c798f86bef7e48ad407474fbeb9523c996a1b70d70fc1a016498ce65e81e56de5c236de462b5e038548e683a9b448e3439fbac69b63467578de8d5d169ef210332b79407b2cd902d89770cff211db109aa74fd6c6bcb9bbd55c8cd4866af993731391db7b7df9a44a5aa5a3b9de2eb79e126a7007f3a64b9c748b599718bfd7841a588969f09613e91b03b5f24c050326a252b7e80bd8fdf7529210e702451deea432ebf66c1fdb3e18eda7f29e8a2866b5e2abee652f4ac4d52fc1
+2016-10-05 16:34:38 INFO  MessageFeedWorker:64 - Creating datafeed with pod...
+2016-10-05 16:34:39 DEBUG UsersClientImpl:78 - Found User: csfetchbot@gmail.com:346621040656418
+2016-10-05 16:34:39 INFO  StockInfoBot:233 - Here...
+2016-10-05 16:34:39 INFO  StockInfoBot:240 - 2...
+2016-10-05 16:34:39 ERROR StockInfoBot:264 - error
+org.symphonyoss.exceptions.RoomException: Room is not fully defined.  Check ID and stream ID
+	at org.symphonyoss.client.services.RoomService.joinRoom(RoomService.java:97)
+	at org.symphonyoss.simplebot.StockInfoBot.initAuth(StockInfoBot.java:255)
+	at org.symphonyoss.simplebot.StockInfoBot.<init>(StockInfoBot.java:158)
+	at org.symphonyoss.simplebot.StockInfoBot.main(StockInfoBot.java:167)
+2016-10-05 16:34:48 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:34:48 DEBUG MessageService:126 - MessageID: QYZWEM02o-T2Urouxir0EH___qhpcb0VdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:34:48 DEBUG MessageService:202 - Found new room stream to cache: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:34:48 INFO  StockInfoBot:621 - Created new room instance from incoming message..Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA TA Hackathon Chat
+2016-10-05 16:34:48 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:34:49 DEBUG MessageService:156 - TS: 1475699688171
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:34:49 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:34:49 DEBUG MessageService:126 - MessageID: SW13jHwMjA0oZTzxzGlax3___qhpcblfdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:34:55 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:34:55 DEBUG MessageService:126 - MessageID: Dv6Q0I49hWWFgAdT6xX0NX___qhpcZ_BdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:34:55 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:34:56 DEBUG StockInfoBot:408 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:34:56 DEBUG StockInfoBot:411 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:34:57 DEBUG StockInfoBot:417 - Response Code: 200
+2016-10-05 16:34:57 DEBUG StockInfoBot:428 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:34:57 DEBUG StockInfoBot:450 - Internet & Direct Marketing Retail
+2016-10-05 16:34:57 DEBUG MessageService:156 - TS: 1475699695679
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:34:57 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:34:57 DEBUG MessageService:126 - MessageID: 6UjZI10Ei-pWK_1JKIzO7n___qhpcZmadA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:35:04 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:35:04 DEBUG MessageService:126 - MessageID: 1gbkIptsPiRhvL1BRyuOR3___qhpcX5ddA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:35:04 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:35:04 DEBUG MessageService:156 - TS: 1475699704227
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:35:04 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:35:04 DEBUG MessageService:126 - MessageID: 7if4iiVokbMi9g_wSji_1X___qhpcX1CdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:35:08 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:35:08 DEBUG MessageService:126 - MessageID: 8V-1vJU_JHJPQqCY5rqfAH___qhpcWyUdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:35:08 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:35:10 DEBUG StockInfoBot:408 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:35:10 DEBUG StockInfoBot:411 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:35:11 DEBUG StockInfoBot:417 - Response Code: 200
+2016-10-05 16:35:11 DEBUG StockInfoBot:428 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:35:11 DEBUG StockInfoBot:450 - Internet & Direct Marketing Retail
+2016-10-05 16:35:11 DEBUG MessageService:156 - TS: 1475699708780
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:35:11 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:35:11 DEBUG MessageService:126 - MessageID: gAK9oaZUaCdEgKV8UzXix3___qhpcWJZdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:35:52 INFO  StockInfoBot:205 - Room Example starting...
+2016-10-05 16:35:52 DEBUG StockInfoBot:211 - https://foundation-dev-api.symphony.com/sessionauth https://foundation-dev-api.symphony.com/keyauth
+2016-10-05 16:35:56 DEBUG AuthorizationClient:78 - SessionToken: sessionToken : 90a7fe472d0bfba49bc1e5723aa5d80158eb7a73aecc7da42ca1f6a16c0f6de7756518696b0ac1337c5989a2ad22e3afb5bb5899d87f5f9728fd0f62ce19a578
+2016-10-05 16:35:57 DEBUG AuthorizationClient:86 - KeyToken: keyManagerToken : 01007069eb7d3b01177f3c186ae5d701e2246189d28a3901557e483541689eb8fdc5cbdd33729ff555ee3e4640713dfc229b63fc496f05631243ac42bf23914af9fe42b5e0d8df49c5451e00da97827cb68301095e605d2e8f4c2d17eb459773315e5974e8d32eb0285bfd09e89cc7c3ecaa113698e3209a599eeff6cf6a88e4f87b5d39e07db6dd4614736845e9ec0bb2b7cdea69e158dd6832d3de3b97721147fd3801edf567fc8defbbf5c18993fccc5a0d587b16f23c102cafb9843d
+2016-10-05 16:35:57 INFO  MessageFeedWorker:64 - Creating datafeed with pod...
+2016-10-05 16:35:58 DEBUG UsersClientImpl:78 - Found User: csfetchbot@gmail.com:346621040656418
+2016-10-05 16:35:58 INFO  StockInfoBot:233 - Here...
+2016-10-05 16:35:58 INFO  StockInfoBot:240 - 2...
+2016-10-05 16:35:58 ERROR StockInfoBot:264 - error
+org.symphonyoss.exceptions.RoomException: Room is not fully defined.  Check ID and stream ID
+	at org.symphonyoss.client.services.RoomService.joinRoom(RoomService.java:97)
+	at org.symphonyoss.simplebot.StockInfoBot.initAuth(StockInfoBot.java:255)
+	at org.symphonyoss.simplebot.StockInfoBot.<init>(StockInfoBot.java:158)
+	at org.symphonyoss.simplebot.StockInfoBot.main(StockInfoBot.java:167)
+2016-10-05 16:36:17 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:36:17 DEBUG MessageService:126 - MessageID: ahc-SyAHZMv5at6ggozLI3___qhpcGItdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:18 DEBUG MessageService:202 - Found new room stream to cache: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:18 INFO  StockInfoBot:621 - Created new room instance from incoming message..Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA TA Hackathon Chat
+2016-10-05 16:36:18 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:36:18 DEBUG MessageService:156 - TS: 1475699776980
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:36:18 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:36:18 DEBUG MessageService:126 - MessageID: ptqirrg3BmJy6sr6lQYau3___qhpcFwOdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:29 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:36:29 DEBUG MessageService:126 - MessageID: 0uWHK6Bx_JXq1WVyJVf1Zn___qhpcDTkdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:29 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:36:29 DEBUG StockInfoBot:408 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:36:29 DEBUG StockInfoBot:411 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:36:30 DEBUG StockInfoBot:417 - Response Code: 200
+2016-10-05 16:36:30 DEBUG StockInfoBot:428 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:36:30 DEBUG StockInfoBot:450 - Internet & Direct Marketing Retail
+2016-10-05 16:36:30 DEBUG MessageService:156 - TS: 1475699788575
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:36:30 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:36:30 DEBUG MessageService:126 - MessageID: ogLYSUM75ztkOsxPLQnNSH___qhpcC0idA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:35 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:36:35 DEBUG MessageService:126 - MessageID: SKeH4HuEkU-wNYbqKDSoLX___qhpcBj7dA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:35 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:36:35 DEBUG MessageService:156 - TS: 1475699795717
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:36:36 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:36:36 DEBUG MessageService:126 - MessageID: TQ6im_w9ZTufQv6C2njbin___qhpcBhhdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:50 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:36:50 DEBUG MessageService:126 - MessageID: J3jn4VgI8MMY4Oj9R-6nSX___qhpb-NrdA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:36:50 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:36:50 DEBUG MessageService:156 - TS: 1475699809429
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null

@@ -131,6 +131,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
 
     private SymphonyClient     symClient;
     private Map<String,String> initParams = new HashMap<>();
+    private Map<Room,Boolean> isActive = new HashMap<>();
     //private Chat               chat;
 
     private static Set<String> initParamNames = new HashSet<>();
@@ -449,6 +450,9 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         logger.debug(jsonResultFinal.get("412|sector").toString());
         result.append("Last Actual Year: " + jsonResultFinal.get("411|lastActualYear") + "\n");
         result.append("Currency: " + jsonResultFinal.get("412|currency") + "\n");
+        result.append("Rating: " + jsonResultFinal.get("407|rating") + "\n");
+    result.append("Description: " + jsonResultFinal.get("412|description") + "\n");
+    result.append("Currency Symbol: " + jsonResultFinal.get("413|currencySymbol") + "\n");
 //        JSONObject jsonResultfAndVGrid= (JSONObject) jsonResults.get("411|fAndVGrid");
 //                logger.debug(jsonResultfAndVGrid.toString());
 //
@@ -470,6 +474,11 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
     }
     
 
+    public String check_if_starting(String msg_with_tags) {
+        int end_ind = msg_with_tags.indexOf("</messageML>");
+        int start_ind = msg_with_tags.indexOf(">") + 1;
+        return msg_with_tags.substring(start_ind, end_ind);
+    }
 
 
     @Override
@@ -499,7 +508,46 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         {
             String messageText = roomMessage.getMessage();
 
-            if (messageText != null)
+            String strippedMessage = check_if_starting(messageText);
+
+            if(strippedMessage.equals("/CSFetchBot"))
+            {
+                if(!isActive.containsKey(room) || isActive.get(room) == false)
+                {
+                    if(!isActive.containsKey(room))
+                    {
+                        isActive.put(room, true);
+                    }
+
+                    SymMessage aMessage = new SymMessage();
+                    aMessage.setFormat(SymMessage.Format.TEXT);
+                    aMessage.setMessage("CSFetchBot is now active and listening for cashtags...");
+                    
+                    try {
+                        symClient.getMessageService().sendMessage(room, aMessage); 
+                    }
+                    catch (MessagesException e) 
+                    {
+                        logger.error("error",e);
+                    }
+                }
+                else if(isActive.get(room))
+                {
+                    isActive.put(room, false);
+                    SymMessage aMessage = new SymMessage();
+                    aMessage.setFormat(SymMessage.Format.TEXT);
+                    aMessage.setMessage("CSFetchBot is now shutting down...");
+                    
+                    try {
+                        symClient.getMessageService().sendMessage(room, aMessage); 
+                    }
+                    catch (MessagesException e) 
+                    {
+                        logger.error("error",e);
+                    }
+                }
+            }
+            else if (messageText != null && isActive.get(room))
             {
                 String[]           stocks       = parseCashTags(messageText);
                 Map<String, Stock> stocksData   = YahooFinance.get(stocks);
