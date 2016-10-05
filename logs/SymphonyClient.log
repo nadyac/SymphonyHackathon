@@ -292,3 +292,160 @@ Type: null
 From ID: 346621040656415
 SymMessage: <messageML><cash tag="AMZN"/></messageML>
 Type: null
+2016-10-05 16:40:02 INFO  StockInfoBot:205 - Room Example starting...
+2016-10-05 16:40:02 DEBUG StockInfoBot:211 - https://foundation-dev-api.symphony.com/sessionauth https://foundation-dev-api.symphony.com/keyauth
+2016-10-05 16:40:03 DEBUG AuthorizationClient:78 - SessionToken: sessionToken : e5fb6ec0f71f4649a87585fad6ebd5c231c7958e0c8ca3ffb306fadc14c47c82aa93f350c4673415c28465c0301524fa068b955e9f1f8f86effabbe9177aad95
+2016-10-05 16:40:03 DEBUG AuthorizationClient:86 - KeyToken: keyManagerToken : 0100cb1fa9e67e0271bf473bb87754ed68a04982772e2ef86b8a2c4c1096a72750ccee7a5c92107a3bdc149ace263261b054489ca2aac221db8e44fac14c49ead77becae311b4382ca2c69956f3ed881b95d85676d29b0e6e3b21706e65258eae003499015a79bf9f319c1f8ec86294c24e445151156ee86fc691239d65482c0136ae46f4278cb1cf2a8f4bf93aaee9ce77f071e8f6c1ca21b3e472d8f3ce6cc164ad0e8c925cfbaffa66a4be0dd07c48074048ca4d6d515ad1398a4eb70
+2016-10-05 16:40:03 INFO  MessageFeedWorker:64 - Creating datafeed with pod...
+2016-10-05 16:40:04 DEBUG UsersClientImpl:78 - Found User: csfetchbot@gmail.com:346621040656418
+2016-10-05 16:40:04 INFO  StockInfoBot:233 - Here...
+2016-10-05 16:40:04 INFO  StockInfoBot:240 - 2...
+2016-10-05 16:40:04 ERROR StockInfoBot:264 - error
+org.symphonyoss.exceptions.RoomException: Room is not fully defined.  Check ID and stream ID
+	at org.symphonyoss.client.services.RoomService.joinRoom(RoomService.java:97)
+	at org.symphonyoss.simplebot.StockInfoBot.initAuth(StockInfoBot.java:255)
+	at org.symphonyoss.simplebot.StockInfoBot.<init>(StockInfoBot.java:158)
+	at org.symphonyoss.simplebot.StockInfoBot.main(StockInfoBot.java:167)
+2016-10-05 16:40:19 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:19 DEBUG MessageService:126 - MessageID: AHjp_bbJUbiZJ7gWsumHnX___qhpbK_AdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:19 DEBUG MessageService:202 - Found new room stream to cache: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:20 INFO  StockInfoBot:621 - Created new room instance from incoming message..ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA Demo
+2016-10-05 16:40:20 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:40:21 DEBUG MessageService:156 - TS: 1475700019266
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:40:21 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:21 DEBUG MessageService:126 - MessageID: -5zOiR8k-L6vh6iKddRsSX___qhpbKjXdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:26 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:26 DEBUG MessageService:126 - MessageID: CJoriPk55A8v_YC_DuB9mH___qhpbJKpdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:26 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:40:27 DEBUG StockInfoBot:408 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:40:27 DEBUG StockInfoBot:411 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:40:28 DEBUG StockInfoBot:417 - Response Code: 200
+2016-10-05 16:40:28 DEBUG StockInfoBot:428 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:40:28 DEBUG StockInfoBot:450 - Internet & Direct Marketing Retail
+2016-10-05 16:40:39 DEBUG MessageService:156 - TS: 1475700026711
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:40:40 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:40 DEBUG MessageService:126 - MessageID: YWZY4AhIbxBAz3lK7MahGX___qhpbGAydA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:40 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:40 DEBUG MessageService:126 - MessageID: 6Diahsj87yigUWZ_Vh6gyH___qhpbF_YdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:41 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:41 DEBUG MessageService:126 - MessageID: f78awuxxTN4pdJJPl63wTn___qhpbFsPdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:56 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:56 DEBUG MessageService:126 - MessageID: BN0pZqSzWxNN7JvEMvDZoX___qhpbB-TdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:40:56 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:40:56 DEBUG StockInfoBot:408 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:40:56 DEBUG StockInfoBot:411 - https://csplus-nadyac.c9users.io/amazonData.json
+2016-10-05 16:40:57 DEBUG StockInfoBot:417 - Response Code: 200
+2016-10-05 16:40:57 DEBUG StockInfoBot:428 - {"errors":{"407|restrictionStatus":"No restrictions found","407|restrictionDate":"No restrictions found","415|series":"no value","408|restrictionCode":"No restrictions found"},"results":{"412|sector":"Internet & Direct Marketing Retail","411|lastActualYear":2015.0,"412|currency":"USD","414|series":[{"actual":true,"content":"296.3","year":2014},{"actual":true,"content":"132.6","year":2015},{"actual":false,"content":"66.2","year":2016},{"actual":false,"content":"44.3","year":2017},{"actual":false,"content":"31.7","year":2018}],"411|fAndVGrid":[{"years":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025]},{"EPS (Excl. ESO) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.59","18.83","26.30","33.49","41.51","49.82","59.41","81.01","94.43","105.76"]},{"Prev. EPS (CS adj.) (US$)":["2.41","3.37","2.81","6.29","12.07","17.12","24.05","30.62","37.90","45.41","53.86","76.17","86.77","96.98"]},{"P/E (CS) (x)":["346.6","247.3","296.3","132.6","66.2","44.3","31.7","24.9","20.1","16.7","14.0","10.3","8.8","7.9"]},{"P/E rel. (%)":["","","","721.2","362.1","273.6","219.8","","","","","","",""]},{"Revenue (US$ m)":["61,093.0","74,453.0","88,988.0","107,007.0","134,817.1","159,800.5","188,610.7","220,375.4","254,614.1","290,353.9","326,656.5","362,734.9","399,207.3","435,432.0"]},{"EBITDA (US$ m)":["2,834.0","3,998.0","4,923.0","8,514.0","12,905.1","18,889.6","25,802.3","33,057.7","41,355.2","50,295.7","59,640.0","69,706.9","79,066.7","88,720.4"]},{"Net Debt (US$ m)":["-5,000","-5,467","-6,292","-7,655","-17,361","-31,833","-52,555","-80,230","-114,466","-155,866","-204,144","-256,685","-316,226","-382,733"]},{"OCFPS (US$ m)":["9.08","11.60","14.25","24.45","39.02","50.92","64.71","79.34","92.62","106.44","120.13","127.13","139.13","150.37"]},{"P/OCF (x)":["27.7","34.4","21.8","27.6","21.4","16.4","12.9","10.5","9.0","7.8","6.9","6.6","6.0","5.5"]},{"Number of shares (m)":"474.07"},{"BV/share (Next Qtr, US$)":"38.5"},{"Net debt (Next Qtr, US$)":"-761.4"},{"Dividend yield (%)":"0.00"},{"Price/Sales (ttm) (x)":"3.16"},{"P/BVPS (ttm) (x)":"20.9"},{"Dividend (Next Qtr, US$)":"0.0"}],"411|lastUpdateDate":"Fri Jul 29 2016 00:00:00 GMT-0400 (Eastern Daylight Time)","406|scope.spiderReptError":false,"407|rating":"OUTPERFORM","412|fyeDate":"Sat Dec 31 00:00:00 UTC 2016","413|series":[{"actual":true,"content":"2.81","year":2014},{"actual":true,"content":"6.29","year":2015},{"actual":false,"content":"12.59","year":2016},{"actual":false,"content":"18.83","year":2017},{"actual":false,"content":"26.30","year":2018}],"412|description":"Amazon.com is a customer-centric company for 3 primary customer sets: consumers, sellers & enterprises. In addition, it generates revenue through other marketing and promotional services, such as online advertising, and co-branded credit card agreements.","413|currencySymbol":"US$"}}
+2016-10-05 16:40:57 DEBUG StockInfoBot:450 - Internet & Direct Marketing Retail
+2016-10-05 16:40:57 DEBUG MessageService:156 - TS: 1475700056174
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:40:57 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:40:57 DEBUG MessageService:126 - MessageID: ufjinmkTRT9khabuBcKyMX___qhpbBqSdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:41:05 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:41:05 DEBUG MessageService:126 - MessageID: n0eGVoJjCz-FYNwvbvPizX___qhpa_oNdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:41:05 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:41:06 DEBUG MessageService:156 - TS: 1475700065779
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:41:06 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:41:06 DEBUG MessageService:126 - MessageID: DwiAftDCNUrZPO4hWNmOA3___qhpa_lTdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:41:11 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:41:11 DEBUG MessageService:126 - MessageID: 1xJ6pzV99F02_zTElnsa-3___qhpa-QKdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:41:11 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:41:11 DEBUG MessageService:156 - TS: 1475700071416
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:41:36 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:41:36 DEBUG MessageService:126 - MessageID: Kt5AdYvmOI7oujRM-d-jI3___qhpa4EPdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:41:36 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML>/CSFetchBot <cash tag="AMZN"/></messageML>
+2016-10-05 16:41:36 DEBUG MessageService:156 - TS: 1475700096754
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot <cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:41:43 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:41:43 DEBUG MessageService:126 - MessageID: pfW5fw8o9Y00iQLfzfZYoX___qhpa2VedA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:41:43 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:41:44 DEBUG MessageService:156 - TS: 1475700103842
+From ID: 346621040656415
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:41:44 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:41:44 DEBUG MessageService:126 - MessageID: OD5I4qikJXEYbj5W1TNv13___qhpa2S8dA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:43:13 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:43:13 DEBUG MessageService:126 - MessageID: 9c4EsbLrOYU-ETRrzN1jPX___qhpagjkdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:43:13 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656415 message: <messageML><cash tag="AAPL"/></messageML>
+2016-10-05 16:43:13 DEBUG MessageService:156 - TS: 1475700193052
+From ID: 346621040656415
+SymMessage: <messageML><cash tag="AAPL"/></messageML>
+Type: null
+2016-10-05 16:43:25 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:43:25 DEBUG MessageService:126 - MessageID: zLZnnztXYB7QOBFlcmYkqn___qhpadiKbw StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:43:36 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:43:36 DEBUG MessageService:126 - MessageID: aZxY5m8HguMU0LhIGGMXhH___qhpaa9Gbw StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:43:41 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:43:41 DEBUG MessageService:126 - MessageID: UkmceumkREt0JAG5fBBm6n___qhpaZtZdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:43:41 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656413 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:43:41 DEBUG MessageService:156 - TS: 1475700221095
+From ID: 346621040656413
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:43:58 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:43:58 DEBUG MessageService:126 - MessageID: AVdUKyCtv5-lWiFgHe717H___qhpaVi2dA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:43:58 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656413 message: <messageML>/CSFetchBot</messageML>
+2016-10-05 16:43:59 DEBUG MessageService:156 - TS: 1475700238550
+From ID: 346621040656413
+SymMessage: <messageML>/CSFetchBot</messageML>
+Type: null
+2016-10-05 16:43:59 DEBUG MessageFeedWorker:87 - Received 2 messages..
+2016-10-05 16:43:59 DEBUG MessageService:126 - MessageID: h5pYiazzys0Dxp-xdGarI3___qhpaVb8dA StreamID: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:43:59 DEBUG MessageService:202 - Found new room stream to cache: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA
+2016-10-05 16:43:59 INFO  StockInfoBot:621 - Created new room instance from incoming message..Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA TA Hackathon Chat
+2016-10-05 16:43:59 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656417 message: <messageML>                result.append(&quot;Series:&quot; + jsonResultFinal.get(&quot;413|series&quot;) + &quot;n&quot;); </messageML>
+2016-10-05 16:43:59 ERROR StockInfoBot:601 - Unexpected exception.
+java.lang.NullPointerException
+	at org.symphonyoss.simplebot.StockInfoBot.onRoomMessage(StockInfoBot.java:550)
+	at org.symphonyoss.client.services.RoomService.onMessage(RoomService.java:124)
+	at org.symphonyoss.client.services.MessageService.onMessage(MessageService.java:143)
+	at org.symphonyoss.client.services.MessageFeedWorker$$Lambda$2/462628574.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at org.symphonyoss.client.services.MessageFeedWorker.run(MessageFeedWorker.java:90)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-05 16:43:59 DEBUG StockInfoBot:490 - New room message detected from room: TA Hackathon Chat on stream: Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA from: 346621040656417 message: <messageML>                result.append(&quot;Series:&quot; + jsonResultFinal.get(&quot;413|series&quot;) + &quot;n&quot;); </messageML>
+2016-10-05 16:43:59 ERROR StockInfoBot:601 - Unexpected exception.
+java.lang.NullPointerException
+	at org.symphonyoss.simplebot.StockInfoBot.onRoomMessage(StockInfoBot.java:550)
+	at org.symphonyoss.client.services.RoomService.onMessage(RoomService.java:124)
+	at org.symphonyoss.client.services.MessageService.onMessage(MessageService.java:143)
+	at org.symphonyoss.client.services.MessageFeedWorker$$Lambda$2/462628574.accept(Unknown Source)
+	at java.util.ArrayList.forEach(ArrayList.java:1249)
+	at org.symphonyoss.client.services.MessageFeedWorker.run(MessageFeedWorker.java:90)
+	at java.lang.Thread.run(Thread.java:745)
+2016-10-05 16:43:59 DEBUG MessageService:156 - TS: 1475700238596
+From ID: 346621040656417
+SymMessage: <messageML>                result.append(&quot;Series:&quot; + jsonResultFinal.get(&quot;413|series&quot;) + &quot;n&quot;); </messageML>
+Type: null
+2016-10-05 16:43:59 DEBUG MessageService:126 - MessageID: ly-Ogg2HUnZYkolUlVA7XX___qhpaVVBdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:44:00 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:44:00 DEBUG MessageService:126 - MessageID: C-oD_alXAtaPzVO-k945fn___qhpaVP1dA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:44:09 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:44:09 DEBUG MessageService:126 - MessageID: MJhvtbwJcCXdnFSUsoqAjH___qhpaSyDdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:44:09 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656413 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:44:09 DEBUG StockInfoBot:490 - New room message detected from room: Demo on stream: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA from: 346621040656413 message: <messageML><cash tag="AMZN"/></messageML>
+2016-10-05 16:44:09 DEBUG MessageService:156 - TS: 1475700249470
+From ID: 346621040656413
+SymMessage: <messageML><cash tag="AMZN"/></messageML>
+Type: null
+2016-10-05 16:44:12 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:44:12 DEBUG MessageService:126 - MessageID: I1kKSUSW41zLe-SOLtxJBH___qhpaSHldA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA
+2016-10-05 16:44:13 DEBUG MessageFeedWorker:87 - Received 1 messages..
+2016-10-05 16:44:13 DEBUG MessageService:126 - MessageID: VGP3mGVi2i4JUvFM1NwZdX___qhpaR5SdA StreamID: ixP087Avtbq_g8FwHvK1YX___qhpbYPsdA

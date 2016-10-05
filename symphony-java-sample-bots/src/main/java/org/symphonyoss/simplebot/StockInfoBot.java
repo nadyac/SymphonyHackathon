@@ -453,6 +453,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         result.append("Rating: " + jsonResultFinal.get("407|rating") + "\n");
     result.append("Description: " + jsonResultFinal.get("412|description") + "\n");
     result.append("Currency Symbol: " + jsonResultFinal.get("413|currencySymbol") + "\n");
+    result.append("Series:" + jsonResultFinal.get("413|series") + "\n");
 //        JSONObject jsonResultfAndVGrid= (JSONObject) jsonResults.get("411|fAndVGrid");
 //                logger.debug(jsonResultfAndVGrid.toString());
 //
