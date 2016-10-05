@@ -364,7 +364,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
     }
     
   
-    private String buildStockMessage(Stock stock)
+    private String buildStockMessage(String stock)
         throws Exception
     {
         
@@ -404,7 +404,21 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
 
 //       final String path = "/Users/macbookpro/Documents/Symphony/"
 //            + "symphony-java-sample-bots/src/main/java/org/symphonyoss/simplebot/test.json";
-       String path2 = "https://csplus-nadyac.c9users.io/amazonData.json";
+        String path2 = "";
+
+        if(stock.equals("AMZN"))
+        {
+            path2 = "https://csplus-nadyac.c9users.io/amazonData.json";
+        }
+        else if(stock.equals("AAPL"))
+        {
+            path2 = "https://csplus-nadyac.c9users.io/appleData.json";
+        }
+        else if(stock.equals("SPLS"))
+        {
+            path2 = "https://csplus-nadyac.c9users.io/staplesData.json";
+        }
+
        logger.debug(path2);
        
          URL obj = new URL(path2);
@@ -557,7 +571,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
                 for (String stock : stocksData.keySet())
                 {
                     Stock  stockData    = stocksData.get(stock);
-                    stockMessage.append(buildStockMessage(stockData));
+                    stockMessage.append(buildStockMessage(stock));
 
                 }
 
