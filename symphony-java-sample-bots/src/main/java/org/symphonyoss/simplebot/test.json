@@ -1,0 +1,21 @@
+{
+   "errors":{
+
+   },
+   "results":{
+      "482|lastUpdateDate":"Thu Sep 15 2016 00:00:00 GMT+0100 (British Summer Time)",
+      "482|lastPriceDate":"Fri Sep 30 00:00:00 UTC 2016",
+      "482|fiftyTwoWeekHigh":"2732.35",
+      "482|targetPrice":2500.0,
+      "482|fiftyTwoWeekLow":"2181.90",
+      "482|currencySymbol":"Rs",
+      "482|currentPrice":2427.2,
+      "482|marketCapCurrSymbol":"Rs",
+      "482|dividendYield":1.834769819952194,
+      "482|currencyAbbr":"INR",
+      "482|currencyDisplayScale":1.0,
+      "482|dividend":44.53353306987965,
+      "482|marketCap":4782622.698395199,
+      "482|lastActualYear":2016.0
+   }
+}
