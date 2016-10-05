@@ -68,13 +68,18 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import org.json.simple.*;
+
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import javax.net.ssl.HttpsURLConnection;
 
 
 
@@ -302,14 +307,52 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
         return(result);
     }
 
+    private StringBuffer sendGet() throws Exception {
+
+        //String url = "https://plus-uit.credit-suisse.com/";
+        String url =  "https://csplus-nadyac.c9users.io/amazonData.json";
+
+        String USER_AGENT = "Mozilla/5.0";
+
+        URL obj = new URL(url);
+        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+
+        // optional default is GET
+        con.setRequestMethod("GET");
+
+        //add request header
+        con.setRequestProperty("User-Agent", USER_AGENT);
+
+        int responseCode = con.getResponseCode();
+        System.out.println("\nSending 'GET' request to URL : " + url);
+        System.out.println("Response Code : " + responseCode);
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
+        String inputLine;
+        StringBuffer response = new StringBuffer();
+
+        while ((inputLine = in.readLine()) != null) {
+            response.append(inputLine);
+        }
+        in.close();
+
+        //print result
+        System.out.println(response.toString());
+
+        return response;
+
+    }
+
+
 
     private JSONObject jsonParse(String path) throws IOException, ParseException{
         JSONObject resultObject = new JSONObject();
-          FileReader reader = new FileReader (path);
-            JSONParser jsonParser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
+        FileReader reader = new FileReader (path);
+        JSONParser jsonParser = new JSONParser();
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(reader);
 //            JSONArray result = (JSONArray) jsonObject.get("results");
-             resultObject = (JSONObject) jsonObject.get("results");
+        resultObject = (JSONObject) jsonObject.get("results");
         return resultObject;
     }
     
@@ -319,9 +362,11 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
     {
         StringBuilder result = new StringBuilder();
 
-       final String path = "/Users/Alanna/Documents/CreditSuisse/Hackathon/symphony-java-sample-bots/test.json";
+       //final String path = "/Users/Alanna/Documents/CreditSuisse/Hackathon/symphony-java-sample-bots/test.json";
        
-        JSONObject results = jsonParse(path);
+        StringBuffer path = sendGet();
+
+        JSONObject results = jsonParse(path.toString());
 
         result.append("\n--------------------------------\n");
         result.append("Last Update: " + results.get("482|lastUpdateDate") + "\n");
@@ -387,7 +432,7 @@ public class StockInfoBot implements RoomServiceListener, RoomListener {
             symClient.getMessageService().sendMessage(room, aMessage);
         } 
         catch (MessagesException e) {logger.error("error", e);} */
-        
+
         try
         {
             String messageText = roomMessage.getMessage();
