@@ -22,6 +22,43 @@
 
 package org.symphonyoss.simplebot;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.symphonyoss.client.SymphonyClient;
+import org.symphonyoss.client.SymphonyClientFactory;
+import org.symphonyoss.client.model.Room;
+import org.symphonyoss.client.model.SymAuth;
+import org.symphonyoss.client.services.RoomListener;
+import org.symphonyoss.client.services.RoomService;
+import org.symphonyoss.client.services.RoomServiceListener;
+import org.symphonyoss.exceptions.AuthorizationException;
+import org.symphonyoss.exceptions.InitException;
+import org.symphonyoss.exceptions.MessagesException;
+import org.symphonyoss.exceptions.RoomException;
+import org.symphonyoss.exceptions.SymException;
+import org.symphonyoss.symphony.agent.model.*;
+import org.symphonyoss.symphony.clients.AuthorizationClient;
+import org.symphonyoss.symphony.clients.model.SymMessage;
+import org.symphonyoss.symphony.clients.model.SymUser;
+import org.symphonyoss.symphony.pod.model.User;
+import org.symphonyoss.symphony.pod.model.Stream;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import yahoofinance.Stock;
+import yahoofinance.YahooFinance;
+
+import org.json.simple.parser.JSONParser;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.parser.ParseException;
+import java.net.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
@@ -31,67 +68,63 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.json.simple.*;
-import org.symphonyoss.client.SymphonyClient;
-import org.symphonyoss.client.SymphonyClientFactory;
-import org.symphonyoss.client.model.Chat;
-import org.symphonyoss.client.model.SymAuth;
-import org.symphonyoss.client.services.ChatListener;
-import org.symphonyoss.exceptions.AuthorizationException;
-import org.symphonyoss.exceptions.InitException;
-import org.symphonyoss.exceptions.MessagesException;
-import org.symphonyoss.exceptions.SymException;
-import org.symphonyoss.symphony.agent.model.Message;
-import org.symphonyoss.symphony.agent.model.MessageSubmission;
-import org.symphonyoss.symphony.clients.AuthorizationClient;
-import org.symphonyoss.symphony.clients.model.SymMessage;
-import org.symphonyoss.symphony.clients.model.SymMessage;
-import org.symphonyoss.symphony.clients.model.SymAttachmentInfo;
-import org.symphonyoss.symphony.clients.model.SymUser;
-import org.symphonyoss.symphony.pod.model.User;
-import yahoofinance.Stock;
-import yahoofinance.YahooFinance;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONArray;
-import org.json.simple.parser.ParseException;
-import java.net.*;
 
- 
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.*;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import org.symphonyoss.exceptions.AttachmentsException;
 
-public class StockInfoBot
-    implements ChatListener
-{
-    private final static Logger log = LoggerFactory.getLogger(StockInfoBot.class);
+/**
+ *
+ *
+ * Simple example of the RoomService.
+ *
+ * It will send a message to a room through from a stream (property: room.stream)
+ * This will create a Room object, which is populated with all room attributes and
+ * membership.  Adding a listener, will provide callbacks.
+ *
+ *
+ *
+ * REQUIRED VM Arguments or System Properties:
+ *
+ *        -Dsessionauth.url=https://pod_fqdn:port/sessionauth
+ *        -Dkeyauth.url=https://pod_fqdn:port/keyauth
+ *        -Dsymphony.agent.pod.url=https://agent_fqdn:port/pod
+ *        -Dsymphony.agent.agent.url=https://agent_fqdn:port/agent
+ *        -Dcerts.dir=/dev/certs/
+ *        -Dkeystore.password=(Pass)
+ *        -Dtruststore.file=/dev/certs/server.truststore
+ *        -Dtruststore.password=(Pass)
+ *        -Dbot.user=bot.user1
+ *        -Dbot.domain=@domain.com
+ *        -Duser.call.home=frank.tarsillo@markit.com
+ *        -Droom.stream=(Stream)
+ *
+ *
+ *
+ *
+ * Created by Frank Tarsillo on 5/15/2016.
+ */
+public class StockInfoBot implements RoomServiceListener, RoomListener {
+
+
+    private final static Logger logger = LoggerFactory.getLogger(StockInfoBot.class);
+    private RoomService roomService;
 
     private final static Pattern    CASHTAG_REGEX  = Pattern.compile("<cash tag=\"([^\"]+)\"/>");
     private final static DateFormat DATE_FORMATTER = new SimpleDateFormat("yyyy-MM-dd");
 
-
     private SymphonyClient     symClient;
     private Map<String,String> initParams = new HashMap<>();
-    private Chat               chat;
+    //private Chat               chat;
 
     private static Set<String> initParamNames = new HashSet<>();
-//    private TextOverlay textOverlayClass = new TextOverlay();
-    static
+
+  static
     {
         initParamNames.add("sessionauth.url");
         initParamNames.add("keyauth.url");
@@ -105,8 +138,16 @@ public class StockInfoBot
         initParamNames.add("receiver.user.email");
     }
 
-    public static void main(String[] args)
+
+ public StockInfoBot()
+        throws Exception
     {
+        initParams();
+        initAuth();
+        //initChat();
+    }
+
+    public static void main(String[] args) {
         int returnCode = 0;
 
         try
@@ -117,18 +158,10 @@ public class StockInfoBot
         catch (Exception e)
         {
             returnCode = -1;
-            log.error("Unexpected exception.", e);
+            logger.error("Unexpected exception.", e);
         }
 
         System.exit(returnCode);
-    }
-
-    public StockInfoBot()
-        throws Exception
-    {
-        initParams();
-        initAuth();
-        initChat();
     }
 
     public void start()
@@ -137,7 +170,7 @@ public class StockInfoBot
         Thread.sleep(TimeUnit.MILLISECONDS.convert(5, TimeUnit.MINUTES));
     }
 
-    private void initParams()
+     private void initParams()
     {
         for (String initParam : initParamNames)
         {
@@ -154,66 +187,99 @@ public class StockInfoBot
         }
     }
 
-    private void initAuth()
-        throws Exception
-    {
-        symClient = SymphonyClientFactory.getClient(SymphonyClientFactory.TYPE.BASIC);
 
-        log.debug("{} {}", System.getProperty("sessionauth.url"),
-                           System.getProperty("keyauth.url"));
+    public void initAuth() {
 
-        AuthorizationClient authClient = new AuthorizationClient(
-                initParams.get("sessionauth.url"),
-                initParams.get("keyauth.url"));
+        logger.info("Room Example starting...");
 
-        authClient.setKeystores(
-                initParams.get("truststore.file"),
-                initParams.get("truststore.password"),
-                initParams.get("bot.user.cert.file"),
-                initParams.get("bot.user.cert.password"));
+        try {
 
-        SymAuth symAuth = authClient.authenticate();
+            symClient = SymphonyClientFactory.getClient(SymphonyClientFactory.TYPE.BASIC);
 
-        symClient.init(
-                symAuth,
-                initParams.get("bot.user.email"),
-                initParams.get("agent.url"),
-                initParams.get("pod.url")
-        );
+            logger.debug("{} {}", System.getProperty("sessionauth.url"),
+                               System.getProperty("keyauth.url"));
+
+            AuthorizationClient authClient = new AuthorizationClient(
+                    initParams.get("sessionauth.url"),
+                    initParams.get("keyauth.url"));
+
+            authClient.setKeystores(
+                    initParams.get("truststore.file"),
+                    initParams.get("truststore.password"),
+                    initParams.get("bot.user.cert.file"),
+                    initParams.get("bot.user.cert.password"));
+
+            SymAuth symAuth = authClient.authenticate();
+
+            symClient.init(
+                    symAuth,
+                    initParams.get("bot.user.email"),
+                    initParams.get("agent.url"),
+                    initParams.get("pod.url")
+            );
+
+            logger.info("Here...");
+
+            //A message to send when the BOT comes online.
+            SymMessage aMessage = new SymMessage();
+            aMessage.setFormat(SymMessage.Format.TEXT);
+            aMessage.setMessage("Hello master, I'm alive again in this room....");
+
+            logger.info("2...");
+
+
+            Stream stream = new Stream();
+            stream.setId(System.getProperty("room.stream"));
+            //stream.setId("Bmbt45BgO2mr2Q3recUzCH___qhufjq0dA");
+
+             roomService = new RoomService(symClient);
+             roomService.addRoomServiceListener(this);
+
+            Room room = new Room();
+            room.setStream(stream);
+            room.setId(stream.getId());
+            room.setRoomListener(this);
+
+            roomService.joinRoom(room);
+
+            logger.info("3...");
+
+            //Send a message to the room.
+            symClient.getMessageService().sendMessage(room, aMessage);
+
+
+        } catch (RoomException e) {
+           logger.error("error",e);
+        } catch (MessagesException e) {
+            logger.error("error",e);
+        } catch (InitException e) {
+            logger.error("error",e);
+        } catch (AuthorizationException e) {
+            logger.error("error",e);
+        }
+
     }
 
-    private void initChat()
-        throws SymException
-    {
-        this.chat = new Chat();
-        chat.setLocalUser(symClient.getLocalUser());
-        Set<SymUser> remoteUsers = new HashSet<>();
 
-        remoteUsers.add(symClient.getUsersClient().getUserFromEmail(initParams.get("receiver.user.email")));
-        chat.setRemoteUsers(remoteUsers);
-        chat.setStream(symClient.getStreamsClient().getStream(remoteUsers));
+    //Chat sessions callback method.
+    public void onChatMessage(Message message) {
+        if (message == null)
+            return;
 
-        chat.registerListener(this);
-        symClient.getChatService().addChat(chat);
+        logger.debug("TS: {}\nFrom ID: {}\nSymMessage: {}\nSymMessage Type: {}",
+                message.getTimestamp(),
+                message.getFromUserId(),
+                message.getMessage(),
+                message.getMessageType());
+
     }
 
-    private void sendMessage(String message, SymMessage.Format messageFormat)
-        throws MessagesException
-    {
-        SymMessage messageSubmission = new SymMessage();
-        messageSubmission.setFormat(messageFormat);
-        messageSubmission.setMessage(message);
 
-        symClient.getMessageService().sendMessage(chat, messageSubmission);
-    }
-    private void sendImage(List <SymAttachmentInfo> attachment)
-        throws MessagesException
-    {
-        SymMessage messageSubmission = new SymMessage();
-        messageSubmission.setFormat(SymMessage.Format.MESSAGEML);
-        messageSubmission.setAttachments(attachment);
-        symClient.getMessageService().sendMessage(chat, messageSubmission);
-    }
+
+
+
+
+
 
     private String[] parseCashTags(String messageText)
     {
@@ -236,6 +302,7 @@ public class StockInfoBot
         return(result);
     }
 
+
     private JSONObject jsonParse(String path) throws IOException, ParseException{
         JSONObject resultObject = new JSONObject();
           FileReader reader = new FileReader (path);
@@ -247,27 +314,15 @@ public class StockInfoBot
     }
     
   
-    private String buildStockMessage(Stock stock)
+    private String buildStockMessage2(Stock stock)
         throws Exception
     {
-         
-       final String path = "/Users/macbookpro/Documents/Symphony/"
-            + "symphony-java-sample-bots/src/main/java/org/symphonyoss/simplebot/test.json";
-       URL path2 = new URL("http://csplus.nadyac.c9users.io/response.json");
-       
-        JSONObject results = jsonParse(path);
-                  
-       
         StringBuilder result = new StringBuilder();
 
-//        result.append("\n--------------------------------\n");
-//        result.append("Symbol: " + stock.getSymbol() + "\n");
-//        result.append("Name: " + stock.getName() + "\n");
-//        result.append("Currency: " + stock.getCurrency() + "\n");
-//        result.append("Stock2 Exchange: " + stock.getStockExchange() + "\n");
-//        result.append("Quote: " + String.valueOf(stock.getQuote()) + "\n");
-//        result.append("Stats: " + String.valueOf(stock.getStats()) + "\n");
-//        result.append("Dividend: " + String.valueOf(stock.getDividend()) + "\n");
+       final String path = "/Users/Alanna/Documents/CreditSuisse/Hackathon/symphony-java-sample-bots/test.json";
+       
+        JSONObject results = jsonParse(path);
+
         result.append("\n--------------------------------\n");
         result.append("Last Update: " + results.get("482|lastUpdateDate") + "\n");
         result.append("Last Price Date: " + results.get("482|lastPriceDate") + "\n");
@@ -285,15 +340,57 @@ public class StockInfoBot
         result.append("Last Actual Year: " + results.get("482|lastActualYear") + "\n" + "<html>Hello, <b>world</b></html>");
        
         return(result.toString());
+
+
     }
-    
+
+
+
+    private String buildStockMessage(Stock stock)
+        throws Exception
+    {
+        StringBuilder result = new StringBuilder();
+
+        result.append("\n--------------------------------\n");
+        result.append("Symbol: " + stock.getSymbol() + "\n");
+        result.append("Name: " + stock.getName() + "\n");
+        result.append("Currency: " + stock.getCurrency() + "\n");
+        result.append("Stock Exchange: " + stock.getStockExchange() + "\n");
+        result.append("Quote: " + String.valueOf(stock.getQuote()) + "\n");
+        result.append("Stats: " + String.valueOf(stock.getStats()) + "\n");
+        result.append("Dividend: " + String.valueOf(stock.getDividend()) + "\n");
+        result.append("YOOOOOOoooooOOOOOO" + "\n");
+        return(result.toString());
+    }
+
+
 
     @Override
-    public void onChatMessage(SymMessage message)
-    {
+    public void onRoomMessage(SymMessage roomMessage) {
+
+        Room room = roomService.getRoom(roomMessage.getStreamId());
+
+        if(room!=null && roomMessage.getMessage() != null)
+            logger.debug("New room message detected from room: {} on stream: {} from: {} message: {}",
+                    room.getRoomDetail().getRoomAttributes().getName(),
+                    roomMessage.getStreamId(),
+                    roomMessage.getFromUserId(),
+                    roomMessage.getMessage()
+
+                );
+
+        /*SymMessage aMessage = new SymMessage();
+        aMessage.setFormat(SymMessage.Format.TEXT);
+        aMessage.setMessage("Don't worry, I got you");
+
+        try {
+            symClient.getMessageService().sendMessage(room, aMessage);
+        } 
+        catch (MessagesException e) {logger.error("error", e);} */
+        
         try
         {
-            String messageText = message.getMessage();
+            String messageText = roomMessage.getMessage();
 
             if (messageText != null)
             {
@@ -304,112 +401,77 @@ public class StockInfoBot
                 for (String stock : stocksData.keySet())
                 {
                     Stock  stockData    = stocksData.get(stock);
-                    stockMessage.append(buildStockMessage(stockData));
+                    stockMessage.append(buildStockMessage2(stockData));
 
                 }
 
-                sendMessage(stockMessage.toString(), SymMessage.Format.TEXT);
-                
-                
-                String imageLocation =  
-                    "http://sstatic.net/stackoverflow/img/logo.png";
-                
-                SymAttachmentInfo attachInfo = new SymAttachmentInfo();
-                attachInfo.setName("image");
-                SymMessage symMessage = new SymMessage();
-                symMessage.setMessage("Attachment");
-                symMessage.setStreamId(message.getStreamId());
-                symMessage.setFormat(SymMessage.Format.TEXT);
-                List<SymAttachmentInfo> attachmentList = new ArrayList<>();
-                    try{
-                        log.debug("Getting image");
-                        attachInfo.setSize(83*1024L);
-                        attachInfo.setName("cs_logo.jpg");
-                        
-                       attachmentList.add(symClient.getAttachmentsClient().postAttachment(symMessage.getStreamId(), new File("/Users/macbookpro/Documents/Symphony/symphony-java-sample-bots/cs_logo.jpg")));
-                       log.debug("AttachmentList"+attachmentList);
+                //sendMessage(stockMessage.toString(), SymMessage.Format.TEXT);
+                SymMessage messageSubmission = new SymMessage();
+                messageSubmission.setFormat(SymMessage.Format.TEXT);
+                messageSubmission.setMessage(stockMessage.toString());
 
-                    }catch(AttachmentsException e){
-                        log.error("Attachements Exception",e);
-                    }
-                
-                symMessage.setAttachments(attachmentList);
-                                       log.debug("AttachmentList"+attachmentList);
-
-                Chat chat = symClient.getChatService().getChatByStream(message.getStreamId());
-                symClient.getMessageService().sendMessage(chat, symMessage);
-                
-                
+                symClient.getMessageService().sendMessage(room, messageSubmission);
             }
         }
         catch (Exception e)
         {
-            log.error("Unexpected exception.", e);
+            logger.error("Unexpected exception.", e);
         }
     }
 
+
+
+
+
+    @Override
+    public void onRoomCreatedMessage(RoomCreatedMessage roomCreatedMessage) {
+
+    }
+
+    @Override
+    public void onMessage(SymMessage symMessage) {
+
+    }
+
+    @Override
+    public void onNewRoom(Room room) {
+        logger.info("Created new room instance from incoming message..{} {}", room.getId(), room.getRoomDetail().getRoomAttributes().getName());
+        room.setRoomListener(this);
+    }
+
+    @Override
+    public void onRoomDeactivatedMessage(RoomDeactivatedMessage roomDeactivatedMessage) {
+
+    }
+
+    @Override
+    public void onRoomMemberDemotedFromOwnerMessage(RoomMemberDemotedFromOwnerMessage roomMemberDemotedFromOwnerMessage) {
+
+    }
+
+    @Override
+    public void onRoomMemberPromotedToOwnerMessage(RoomMemberPromotedToOwnerMessage roomMemberPromotedToOwnerMessage) {
+
+    }
+
+    @Override
+    public void onRoomReactivatedMessage(RoomReactivatedMessage roomReactivatedMessage) {
+
+    }
+
+    @Override
+    public void onRoomUpdatedMessage(RoomUpdatedMessage roomUpdatedMessage) {
+
+    }
+
+    @Override
+    public void onUserJoinedRoomMessage(UserJoinedRoomMessage userJoinedRoomMessage) {
+
+    }
+
+    @Override
+    public void onUserLeftRoomMessage(UserLeftRoomMessage userLeftRoomMessage) {
+
+    }
 }
-///**
-// *
-// * @author macbookpro
-// */
-//class TextOverlay extends JPanel {
-//
-//    private BufferedImage image;
-//
-//    public TextOverlay() {
-//        try {
-//            image = ImageIO.read(new URL(
-//                    "http://sstatic.net/stackoverflow/img/logo.png"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        image = process(image);
-//    }
-//
-//    @Override
-//    public Dimension getPreferredSize() {
-//        return new Dimension(image.getWidth(), image.getHeight());
-//    }
-//
-//    private BufferedImage process(BufferedImage old) {
-//        int w = old.getWidth();
-//        int h = old.getHeight();
-//        BufferedImage img = new BufferedImage(
-//                w, h, BufferedImage.TYPE_INT_ARGB);
-//        Graphics2D g2d = img.createGraphics();
-//        g2d.drawImage(old, 0, 0, null);
-//        g2d.setPaint(Color.red);
-//        g2d.setFont(new Font("Serif", Font.BOLD, 20));
-//        String s = "Hello, world!";
-//        FontMetrics fm = g2d.getFontMetrics();
-//        int x = img.getWidth() - fm.stringWidth(s) - 5;
-//        int y = fm.getHeight();
-//        g2d.drawString(s, x, y);
-//        g2d.dispose();
-//        return img;
-//    }
-//
-//        protected void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        g.drawImage(image, 0, 0, null);
-//    }
-//
-//    private static void create() {
-//        JFrame f = new JFrame();
-//        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        f.add(new TextOverlay());
-//        f.pack();
-//        f.setVisible(true);
-//    }
-//
-//    public static void main(String[] args) {
-//        EventQueue.invokeLater(new Runnable() {
-//
-//            @Override
-//            public void run() {
-//                create();
-//            }
-//        });
-//    }
-//}
+
